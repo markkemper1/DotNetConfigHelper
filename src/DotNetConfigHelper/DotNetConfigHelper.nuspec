@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>$id$</id>
+        <version>$version$</version>
+        <authors>$author$</authors>
+        <owners>$author$</owners>
+        <projectUrl>http://github.com/markkemper1/DotNetConfigHelper</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <summary>
+          A library for helper with config. It has parsing extension helpers and can also replace tokens in config from a many sources.
+
+         Can be used to keep passwords out of source control. 
+
+        </summary>
+        <description>
+					Helps with config...
+					e.g
+					config["api_endpoint"].ToUri();
+					config.Optional("ap_timeout", 30).ToInt();
+					
+					config.Required("temp_dir")
+								.ToDirectoryInfo()
+								.MustExist();
+
+
+					It can also read a list of settings from a text and then replace those values e.g.
+					
+					env.config contains
+						my_password=123
+						
+					appSettings
+						key="connectionstring" value="Username=test;password=%my_passsword%"
+						
+						This can be used to keep you secrets out of the appSettings and out of source control. It will also walk up directories looking for a env.config file.
+
+				</description>
+
+			<dependencies>
+				<dependency id="WebActivatorEx" version="2.0" />
+			</dependencies>
+			
+    </metadata>
+  <files>
+    <file src="NugetContent\DotNetConfigHelperStartup.cs.pp" target="Content\App_Start\DotNetConfigHelperStartup.cs.pp" />
+  </files>
+</package>
