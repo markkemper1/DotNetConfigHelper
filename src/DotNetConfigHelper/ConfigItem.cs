@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 
@@ -128,12 +129,16 @@ namespace DotNetConfigHelper
 
         public ConfigItem FileMustExist()
         {
+            if (String.IsNullOrWhiteSpace(value)) throw new ConfigurationErrorsException(String.Format("The value cannot be null or empty. Key: {0}, Value: {1}", key, value));
+
             if (!File.Exists(value)) throw new ArgumentException("File Not Found!. AppSetting:  \"" + key + "\" value: \"" + value + "\"");
             return this;
         }
 
         public ConfigItem DirectoryMustExist(bool isFilename = false)
         {
+            if (String.IsNullOrWhiteSpace(value)) throw new ConfigurationErrorsException(String.Format("The value cannot be null or empty. Key: {0}, Value: {1}", key, value));
+
             var dir = isFilename ? Path.GetDirectoryName(value) : value;
 
             if (!Directory.Exists(dir))
