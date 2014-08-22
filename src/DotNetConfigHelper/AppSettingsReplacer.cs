@@ -120,7 +120,6 @@ namespace DotNetConfigHelper {
                     break;
             }
 
-            System.Configuration.
             if (section is NameValueCollection)
             {
                 var nvc = (NameValueCollection) section;
