@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using DotNetConfigHelper.Providers;
 using NUnit.Framework;
@@ -60,6 +61,18 @@ namespace DotNetConfigHelper.Test
 
             Assert.That(ConfigurationManager.ConnectionStrings["default"].ConnectionString, Is.EqualTo("Server=localhost;Database=test_name;User ID=test_user;Password=test_password;"));
             Assert.That(ConfigurationManager.ConnectionStrings["default"].ProviderName, Is.EqualTo("System.Data.SqlClient"));
+        }
+
+
+
+        [Test]
+        public void should_be_able_to_replace_simple_nvc_settings()
+        {
+            AppSettingsReplacer.Install(config);
+
+            var section = (NameValueCollection)ConfigurationManager.GetSection("ServiceConfiguration");
+
+            Assert.That(section["helloWorldService"], Is.EqualTo("msmq://helloWorldService"));
         }
 
     }

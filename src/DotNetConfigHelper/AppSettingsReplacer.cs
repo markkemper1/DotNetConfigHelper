@@ -120,6 +120,19 @@ namespace DotNetConfigHelper {
                     break;
             }
 
+            System.Configuration.
+            if (section is NameValueCollection)
+            {
+                var nvc = (NameValueCollection) section;
+                var result = new NameValueCollection();
+                
+                foreach (string key in nvc.Keys)
+                {
+                    result.Add(provider.ReplaceTokens(key), provider.ReplaceTokens(nvc[key]));
+                }
+                
+                return result;
+            }
             return section;
         }
 
