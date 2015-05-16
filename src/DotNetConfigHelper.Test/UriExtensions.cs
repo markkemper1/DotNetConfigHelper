@@ -6,6 +6,13 @@ namespace DotNetConfigHelper.Test
     [TestFixture]
     public class UriExtensionsTest
     {
+
+		[Test]
+		public void should_return_null()
+		{
+			Assert.That(new Uri("http://test.com").Username(), Is.EqualTo(null));
+		}
+
         [Test]    
         public void should_return_username()
         {
